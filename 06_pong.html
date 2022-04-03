@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <style>
+            /* CSS */
+            
+        </style>
+        
+        <title>Title</title>
+    </head>
+    <body>
+        <!-- HTML -->
+        
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+        <script>
+            // JS
+            
+            var ballX;
+            var ballY;
+            var ballSpeedX = 5;
+            var ballSpeedY = 5;
+            var paddleHeight = 30;
+
+            function setup() {
+                createCanvas(800, 600);
+                noCursor();
+                ballX = random(width);
+                ballY = random(height / 2);
+            }
+
+            function draw() {
+                background(128);
+                moveBall();
+                checkCollide();
+                drawPaddle();
+                drawBall();
+            }
+
+            function moveBall() {
+                ballX = ballX + ballSpeedX;
+                ballY = ballY + ballSpeedY;
+
+                console.log("ballSpeedX: " + ballSpeedX + ", ballSpeedY: " + ballSpeedY);
+            }
+
+            function checkCollide() {
+                if (ballX < 0 || ballX > width) {
+                    ballSpeedX = ballSpeedX * -1;
+                }
+                if (ballY < 0) {
+                    ballSpeedY = ballSpeedY * -1;
+                }
+                if (ballY > height - paddleHeight) {
+                    if (ballX > mouseX && ballX < mouseX + 200) {
+                        ballSpeedY = ballSpeedY * -1;
+                    } else {
+                        text("GAME OVER!", width / 2, height / 2);
+                        noLoop();
+                    }
+                }
+            }
+
+            function drawBall() {
+                noStroke();
+                ellipse(ballX, ballY, 20, 20);
+            }
+
+            function drawPaddle() {
+                strokeWeight(4);
+                rect(mouseX, height - paddleHeight - 4, 200, paddleHeight);
+            }
+
+
+
+            
+        </script>
+    </body>
+</html>
