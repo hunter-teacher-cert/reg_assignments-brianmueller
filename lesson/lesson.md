@@ -1,5 +1,7 @@
 # Methods 2 Lesson: Algorithms
 
+## [Slides](lesson.pdf)
+
 ## Context
 * **Javascript Programming course, 11th grade**
 * **AIM:** How do we create and implement an algorithm?
